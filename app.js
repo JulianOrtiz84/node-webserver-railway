@@ -6,7 +6,8 @@ const hbs = require('hbs');
 
 const port = process.env.PORT;
 
-
+//Servir contenido estativo
+app.use( express.static('public'))
 //Handlebars
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
@@ -34,16 +35,15 @@ app.get('/elements', (req, res) => {
   });
 });
 
-//Servir contenido estativo
-app.use( express.static('public'))
 
 
 
-// Ruta para manejar todos los demás casos (404)
-app.use((req, res) => {
-  const requestedUrl = req.originalUrl;
-  res.status(404).sendFile(__dirname +'/public/404.html');
-});
+
+// // Ruta para manejar todos los demás casos (404)
+// app.use((req, res) => {
+//   const requestedUrl = req.originalUrl;
+//   res.status(404).sendFile(__dirname +'/public/404.html');
+// });
 
 // Iniciando el servidor
 app.listen(port, () => {
